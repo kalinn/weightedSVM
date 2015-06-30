@@ -1,0 +1,10 @@
+Package: ipwsvm
+Type: Package
+Title: Inverse Probability Weighted Support Vector Machines
+Version: 1.0
+Date: 2015-06-29
+Author: Kristin A. Linn
+Maintainer: Kristin A. Linn <klinn@upenn.edu>
+Description: Functions for implementing inverse probability weighting 
+  with linear support vector machines.
+License: GPL-2
