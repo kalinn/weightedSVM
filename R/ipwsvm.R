@@ -59,3 +59,4 @@ fit.unadj.svm = function(tr.x, tr.y, ts.x, ts.y, grid.C){
   return(list('w'=py.svm[[1]], 'rho'=py.svm[[2]], 
               'acc'=acc, 'bestC'=py.svm[[4]]))
 }
+
