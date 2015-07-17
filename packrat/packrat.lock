@@ -7,11 +7,64 @@ Repos: CRAN=http://cran.r-project.org,
     BioCexp=http://bioconductor.org/packages/3.1/data/experiment,
     BioCextra=http://bioconductor.org/packages/3.1/extra
 
+Package: MASS
+Source: CRAN
+Version: 7.3-39
+Hash: e9488ccece00e145b90d2f2fce5eb201
+
+Package: RJSONIO
+Source: CRAN
+Version: 1.3-0
+Hash: fb672e20eb6f3010a3639f855d8ef6de
+
+Package: Rcpp
+Source: CRAN
+Version: 0.11.6
+Hash: 193916618dce89b287517f457de8fa8b
+
+Package: brew
+Source: CRAN
+Version: 1.0-6
+Hash: 931f9972deae0f205e1c78a51f33149b
+
+Package: digest
+Source: CRAN
+Version: 0.6.8
+Hash: de202f956596a476d09304e3a2ebf1e5
+
+Package: magrittr
+Source: CRAN
+Version: 1.5
+Hash: bdc4d48c3135e8f3b399536ddf160df4
+
 Package: packrat
 Source: github
 Version: 0.4.3-27
+Hash: d5ae942b22b15403bd3739d67ac9dcb7
 GithubRepo: packrat
 GithubUsername: rstudio
 GithubRef: master
 GithubSha1: 1a91cdb290795c24cc0fda94177588b605525674
-Hash: d5ae942b22b15403bd3739d67ac9dcb7
+
+Package: rPython
+Source: CRAN
+Version: 0.0-5
+Hash: 2d3c89c25e7331781c0556db9ebbe324
+Requires: RJSONIO
+
+Package: roxygen2
+Source: CRAN
+Version: 4.1.1
+Hash: cb8a42732d3f42541c6f861352894a0e
+Requires: Rcpp, brew, digest, stringr
+
+Package: stringi
+Source: CRAN
+Version: 0.5-5
+Hash: e7c67668a472e26e0c95bc8fa9049198
+
+Package: stringr
+Source: CRAN
+Version: 1.0.0
+Hash: 2676dd5f88890910962b733b0f9540e1
+Requires: magrittr, stringi
