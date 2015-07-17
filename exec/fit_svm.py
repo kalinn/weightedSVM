@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn import svm, grid_search
 
-def fit_ipw_svm(x, y, ts, weights, C):
+def fit_weighted_svm(x, y, ts, C, weights):
 	#convert to numpy arrays
 	nX = np.array(x, ndmin=2)
 	ntsX = np.array(ts, ndmin=2)
