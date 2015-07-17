@@ -1,12 +1,11 @@
-Package: wsvm
+Package: weightedSVM
 Type: Package
 Title: Weighted Support Vector Machines
 Version: 1.0
 Date: 2015-06-29
 Author: Kristin A. Linn
 Maintainer: Kristin A. Linn <klinn@upenn.edu>
-Description: Functions for implementing weighting 
-  with linear support vector machines. Python libraries numpy and sklearn are required. 
+Description: Functions for implementing weighting with linear support vector machines. Python libraries numpy and sklearn are required. 
 License: GPL-2
 Imports: rPython
 Suggests: MASS
