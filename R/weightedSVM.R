@@ -5,6 +5,7 @@
 #' @param tr.y Vector of group labels for training
 #' @param ts.x Matrix or data.frame of features for testing
 #' @param grid.C Vector of C values for tuning the SVM
+#' @param w optional vector of subject weights
 #' @import rPython
 #' @examples 
 #' if (require(MASS)){
@@ -51,4 +52,43 @@ fit.svm = function(tr.x, tr.y, ts.x, grid.C, w=NULL){
   return(list('w'=py.svm[[1]], 'rho'=py.svm[[2]], 
               'predicted'=py.svm[[3]], 'bestC'=py.svm[[4]]))
 }
+
+#' @title fit.ipw
+#' @description Estimate inverse probability weights using logistic regression
+#' @author Kristin Linn
+#' @param tr.c Matrix or data.frame of confounders
+#' @param tr.y Vector of group labels for training
+#' @export
+#' @examples
+#' # Total in confounded sample
+#' n = 200
+#' # Number of noise features
+#' k = 10
+#' # a1 and a2 are confounders
+#' a1 = runif (n, 0, 1)
+#' a2 = rbinom(n, 1, .5)
+#' # d is a vector of class labels
+#' ld = -1 + a1 + a2 + rnorm(n, 0, .5)
+#' d = 1*(exp(ld)/(1+exp(ld))>.5)
+#' # covariance structure for features
+#' # x1 and x2 are  
+#' covmat = matrix (c (2, .5, .5, 2), 2, 2)
+#' errs = mvrnorm (n, mu=rep (0, 2), Sigma=covmat)
+#' # x1 and x2 are features
+#' x1mean = 5 - 2*d - .5*a1
+#' x2mean = -3*a1 + .5*a2 - .5*d*(a1 + .5*a2 + .25*a1*a2) 
+#' x1 = scale(x1mean + errs[,1])
+#' x2 = scale(x2mean + errs[,2])
+#' noise = matrix (rnorm(n*k), n, k)
+#' features = data.frame(x1=x1, x2=x2, noise=noise)
+fit.ipw = function(tr.c, tr.y){
+  ps.model = glm(tr.y~tr.c)
+  ps.fits = ps.model$fitted.values
+  ps.scores = (tr.y*ps.fits + (1-tr.y)*(1-ps.fits))
+  ipweights = as.numeric(as.character(1/ps.scores))
+  return(ipweights)
+}
+
+
+
 

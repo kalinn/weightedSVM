@@ -14,6 +14,8 @@ fit.svm(tr.x, tr.y, ts.x, grid.C, w = NULL)
 \item{ts.x}{Matrix or data.frame of features for testing}
 
 \item{grid.C}{Vector of C values for tuning the SVM}
+
+\item{w}{optional vector of subject weights}
 }
 \description{
 Fit support vector machine with optional subject-level weights

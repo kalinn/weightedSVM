@@ -12,3 +12,6 @@ notifications:
   email:
     on_success: change
     on_failure: change
+
+before_install:
+ - sudo apt-get install -qq python-numpy python-scipy
