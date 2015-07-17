@@ -1,4 +1,4 @@
-#' Fitting stuff
+#' @title Fitting stuff
 #' @description Fit unweighted SVM
 #' @author Kristin Linn
 #' @param tr.x Matrix or data.frame of features
