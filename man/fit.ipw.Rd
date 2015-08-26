@@ -15,6 +15,11 @@ fit.ipw(tr.c, tr.y)
 Estimate inverse probability weights using logistic regression
 }
 \examples{
+if (require(MASS)){
+##################################################
+# Generate data
+##################################################
+set.seed(1)
 # Total in confounded sample
 n = 200
 # Number of noise features
@@ -28,7 +33,7 @@ d = 1*(exp(ld)/(1+exp(ld))>.5)
 # covariance structure for features
 # x1 and x2 are
 covmat = matrix (c (2, .5, .5, 2), 2, 2)
-errs = mvrnorm (n, mu=rep (0, 2), Sigma=covmat)
+errs = MASS::mvrnorm (n, mu=rep (0, 2), Sigma=covmat)
 # x1 and x2 are features
 x1mean = 5 - 2*d - .5*a1
 x2mean = -3*a1 + .5*a2 - .5*d*(a1 + .5*a2 + .25*a1*a2)
@@ -36,6 +41,7 @@ x1 = scale(x1mean + errs[,1])
 x2 = scale(x2mean + errs[,2])
 noise = matrix (rnorm(n*k), n, k)
 features = data.frame(x1=x1, x2=x2, noise=noise)
+}
 }
 \author{
 Kristin Linn

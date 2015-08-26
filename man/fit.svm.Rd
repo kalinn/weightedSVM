@@ -30,14 +30,14 @@ n = 500
 p = 2
 sigma = matrix(.25, p, p)
 diag(sigma) = 1
-eps1 = mvrnorm(n, rep(0, p), sigma)
-eps2 = mvrnorm(n, rep(0, p), sigma)
+eps1 = MASS::mvrnorm(n, rep(0, p), sigma)
+eps2 = MASS::mvrnorm(n, rep(0, p), sigma)
 tr.y = rbinom(n, 1, .5)
 x1 = 5 - .25*tr.y + .2*tr.y*eps1[,1] + .1*eps2[,1]
 x2 = 5 - tr.y + .3*eps2[,1] + .5*(eps1[,2] + eps2[,2])
 tr.x = cbind(x1, x2)
-ts.eps1 = mvrnorm(n, rep(0, p), sigma)
-ts.eps2 = mvrnorm(n, rep(0, p), sigma)
+ts.eps1 = MASS::mvrnorm(n, rep(0, p), sigma)
+ts.eps2 = MASS::mvrnorm(n, rep(0, p), sigma)
 ts.y = rbinom(n, 1, .5)
 ts.x1 = 5 - .25*ts.y + .2*ts.y*ts.eps1[,1] + .1*ts.eps2[,1]
 ts.x2 = 5 - ts.y + .3*ts.eps2[,1] + .5*(ts.eps1[,2] + ts.eps2[,2])
@@ -50,8 +50,5 @@ w.out = fit.svm(tr.x=tr.x, tr.y=tr.y, ts.x=ts.x, grid.C=grid.C, w=w)
 }
 \author{
 Kristin Linn
-}
-\seealso{
-\code{data.frame}, \code{\link{data.frame}}
 }
 
