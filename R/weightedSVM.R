@@ -17,14 +17,14 @@
 #' p = 2
 #' sigma = matrix(.25, p, p)
 #' diag(sigma) = 1
-#' eps1 = MASS::mvrnorm(n, rep(0, p), sigma)
-#' eps2 = MASS::mvrnorm(n, rep(0, p), sigma)
+#' eps1 = mvrnorm(n, rep(0, p), sigma)
+#' eps2 = mvrnorm(n, rep(0, p), sigma)
 #' tr.y = rbinom(n, 1, .5)
 #' x1 = 5 - .25*tr.y + .2*tr.y*eps1[,1] + .1*eps2[,1]
 #' x2 = 5 - tr.y + .3*eps2[,1] + .5*(eps1[,2] + eps2[,2])
 #' tr.x = cbind(x1, x2)
-#' ts.eps1 = MASS::mvrnorm(n, rep(0, p), sigma)
-#' ts.eps2 = MASS::mvrnorm(n, rep(0, p), sigma)
+#' ts.eps1 = mvrnorm(n, rep(0, p), sigma)
+#' ts.eps2 = mvrnorm(n, rep(0, p), sigma)
 #' ts.y = rbinom(n, 1, .5)
 #' ts.x1 = 5 - .25*ts.y + .2*ts.y*ts.eps1[,1] + .1*ts.eps2[,1]
 #' ts.x2 = 5 - ts.y + .3*ts.eps2[,1] + .5*(ts.eps1[,2] + ts.eps2[,2])
@@ -34,7 +34,6 @@
 #' w = c(rep(2, 250), rep(1.5, 125), rep(3, 125))
 #' w.out = fit.svm(tr.x=tr.x, tr.y=tr.y, ts.x=ts.x, grid.C=grid.C, w=w)
 #' }
-#' @seealso \code{data.frame}, \code{\link{data.frame}}
 #' @export
 fit.svm = function(tr.x, tr.y, ts.x, grid.C, w=NULL){
   tr.x = as.matrix(tr.x)  
@@ -58,8 +57,12 @@ fit.svm = function(tr.x, tr.y, ts.x, grid.C, w=NULL){
 #' @author Kristin Linn
 #' @param tr.c Matrix or data.frame of confounders
 #' @param tr.y Vector of group labels for training
-#' @export
 #' @examples
+#' if (require(MASS)){
+#' ##################################################
+#' # Generate data
+#' ##################################################
+#' set.seed(1)
 #' # Total in confounded sample
 #' n = 200
 #' # Number of noise features
@@ -81,6 +84,8 @@ fit.svm = function(tr.x, tr.y, ts.x, grid.C, w=NULL){
 #' x2 = scale(x2mean + errs[,2])
 #' noise = matrix (rnorm(n*k), n, k)
 #' features = data.frame(x1=x1, x2=x2, noise=noise)
+#' }
+#' @export
 fit.ipw = function(tr.c, tr.y){
   ps.model = glm(tr.y~tr.c)
   ps.fits = ps.model$fitted.values
